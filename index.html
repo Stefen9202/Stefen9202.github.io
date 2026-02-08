@@ -1,74 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Lin Nay Wun - Aspiring Full-Stack Developer">
-    
     <title>Lin Nay Wun | Portfolio</title>
-
     <style>
-        /* Reset default browser gaps */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        html {
+            overflow-y: scroll;
         }
-
+        
         body {
-            background-color: #ffffff; /* White background */
-            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #ffffff;
+            height: 100vh;
         }
 
-        /* Gray Navbar Styling */
+        header {
+            background-color:#ffffff;
+            padding: 20px 0;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        main {
+            padding-top: 80px; 
+        }
+
         nav {
-            background-color: #f4f4f4; /* Subtle gray */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
-            border-bottom: 1px solid #ddd;
-            position: sticky;
-            top: 0;
+            padding: 0 50px;
         }
 
-        .logo {
+        .name {
+            font-family: sans-serif;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.8rem;
+            color: #000;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            display: block;
+            font-family: sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #666;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 20px;
+            margin-right: 50px;
+            font-family: sans-serif;
             color: #333;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        /* Making the Menu Horizontal */
-        .nav-links {
-            list-style: none; /* Removes bullet points */
-            display: flex;     /* Makes list items sit side-by-side */
-            gap: 30px;         /* Adds space between the links */
-        }
-
-        .nav-links a {
-            text-decoration: none; /* Removes underline */
-            color: #555;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        /* Hover effect for a professional feel */
-        .nav-links a:hover {
+        nav li:hover {
             color: #000;
         }
-    </style>
+
+        .hero-container {
+            background-image: url('images/background_image_1.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 50px;
+            height: 450px;
+            overflow: hidden;
+        }
+
+        .hero-text {
+            max-width: 500px;
+            font-family: sans-serif;
+            padding-bottom: 80px;
+            padding-top: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-text p {
+            font-size: 0.9rem;
+            margin-bottom: 0px;
+            padding-top: 15px;
+        }
+        
+        .hero-image {
+            display: block;
+            height: 450px;
+            width: auto;
+        }
+
+        .hero-image img {
+            height: 450px;
+            width: auto;
+        }
+
+        .project-section {
+            padding: 100px 50px;
+        }
+
+        .project-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 1100px;
+        }
+
+        .project-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+
+        .project-left {
+            flex: 1.2; 
+            height: 350px;
+        }
+
+        .project-right {
+            flex: 1;
+            padding-left: 60px;
+            font-family: sans-serif;
+        }
+
+        .project-right h3 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .project-right p {
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .prev-btn, .next-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.3s;
+        }
+
+        .prev-btn:hover, .next-btn:hover {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+        
+        .view-all-container {
+            display: flex;
+            justify-content: center;
+            margin: -50px 0 80px 0;
+        }
+
+        .btn-secondary, .view-all-btn {
+            font-family: sans-serif;
+            text-decoration: none;
+            color: #000;
+            border: 2px solid #000;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover, .view-all-btn:hover {
+            background-color: #000;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .skills-section {
+            padding: 80px 50px;
+            background-color: #D4D4D4;
+            margin-top: -100px;
+        }
+
+        .skills-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .skills-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .skills-header h2 {
+            font-family: sans-serif;
+            font-size: 2.2rem;
+            color: #000;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: #fff;
+            padding: 30px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            font-family: sans-serif;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #000;
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .skill-card p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .languages-list p {
+            margin-bottom: 10px !important;
+            line-height: 1.4;
+        }
+
+        .languages-list strong {
+            color: #000;
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .about-center-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .contact-section {
+            padding: 100px 50px;
+            background-color: #ffffff;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-container h2 {
+            font-family: sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .contact-container p {
+            font-family: sans-serif;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        footer {
+            padding: 30px 50px;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.0)), url('images/FooterImage.png'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-family: sans-serif;
+            color: #000;
+            font-size: 0.85rem;
+        }
+
+        /* Style for the icon container */
+        .footer-icons {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between icons */
+        }
+
+        /* Style for the icons themselves */
+        .footer-icons a {
+            color: #000;
+            font-size: 1.5rem; /* Makes icons a good visible size */
+            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        /* Hover effect */
+        .footer-icons a:hover {
+            color: #666;
+            transform: translateY(-3px);
+        }
+    </style>    
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="logo">
+                    <div class="name"><a href="index.html" style="text-decoration: none; color: inherit;">Lin Nay Wun</a></div>
+                    <span class="tagline">Aspiring Tech Professional</span>
+            </div>
+            <ul>
+                <li><a href="projects.html" style="text-decoration: none; color: inherit;">Projects</a></li>
+                <li><a href="about_me.html" style="text-decoration: none; color: inherit;">About Me</a></li>
+                <li><a href="contact.html" style="text-decoration: none; color: inherit;">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero-container">
+            <div class="hero-text">
+                <h1>Hi, I'm Lin Nay Wun</h1>
+                <p>I am a fresh graduate from Rangsit University passionate about <br>Full-Stack Development and building high-performance web applications. My internship provided hands-on UI/UX experience using modern design insights to create intuitive interfaces. I also bring a versatile background in Data, Networking, IT Support, and QA, ensuring I can oversee the entire digital product lifecycle.</p>
+            </div>
+            <div class="hero-image">
+                <img src="images/Profile_Picture.png" alt="Lin Nay Wun">
+            </div>
+        </section>
+        
+        <section id="projects" class="project-section">
+            <ul class="project-list">
+                <li class="project-item">
+                    <div class="project-left">
+                        <div class="slider-container">
+                            <div class="slider-wrapper">
+                                <img src="images/CV_Lulus_Picture1.png" alt="Slide 1">
+                                <img src="images/CV_Lulus_Picture2.png" alt="Slide 2">     
+                                <img src="images/CV_Lulus_Picture3.png" alt="Slide 3">
+                                <img src="images/CV_Lulus_Picture4.png" alt="Slide 4">   
+                            </div>
+                            <button class="prev-btn">&#10094;</button>
+                            <button class="next-btn">&#10095;</button>
+                        </div>
+                    </div>
+                    <div class="project-right">
+                        <h3>CV Lulus Website</h3>
+                        <p>Successfully developed a CV Lulus Website during my internship at PT PCBA Semiconductor International. I focused on creating a user-friendly interface for professional document generation.</p>
+                        <div class="tech-stack">
+                            <span>HTML /</span>
+                            <span>CSS /</span>
+                            <span>JavaScript /</span>
+                            <span>React /</span>
+                            <span>Next.js</span>
+                        </div>
+                    </div>
+                </li>
+                <div class="view-all-container">
+                    <a href="projects.html" class="view-all-btn">View All Projects</a>
+                </div>
+            </ul>
+        </section>
 
-    <nav>
-        <div class="logo">Lin Nay Wun</div>
+        <section class="skills-section">
+            <div class="skills-container">
+                <div class="skills-header">
+                    <h2>Technical Toolkit</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Languages & Core</h3>
+                        <div class="languages-list">
+                            <p><strong>Primary:</strong> HTML & CSS, C#, Dart</p>
+                            <p><strong>Basic Proficiency:</strong> JavaScript, TypeScript, Python, Java, SQL</p>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Development</h3>
+                        <p>Building scalable web apps using <strong>Next.js, React, and JavaScript</strong> with clean architecture.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>UI/UX Design</h3>
+                        <p>Creating intuitive interfaces and user flows based on modern design insights and prototyping by using <strong>Figma and Canva</strong>.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Networking & IT</h3>
+                        <p>Hands-on experience in <strong>Networking, IT Support</strong>, and troubleshooting infrastructure.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>QA & Data</h3>
+                        <p>Ensuring product quality through <strong>QA testing</strong> and managing technical data systems.</p>
+                    </div>
+                </div>
+                <div class="about-center-wrapper">
+                    <a href="about_me.html" class="btn-secondary">More About Me</a>
+                </div>
+            </div>
+        </section>
 
-        <ul class="nav-links">
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+        <section class="contact-section">
+            <div class="contact-container">
+                <h2>Make it Happen</h2>
+                <p>I am currently looking for new opportunities and collaborations. Whether you have a question or just want to say hi, I’ll get back to you as soon as possible!</p>
+                <div class="contact-buttons">
+                    <a href="contact.html" class="btn-secondary">Contact Me</a>
+                </div>
+            </div>
+        </section>
 
-    </body>
+        <footer>
+            <p>&copy; 2026 Lin Nay Wun. Built with passion & modern tech.</p>
+            
+            <div class="footer-icons">
+                <a href="https://www.linkedin.com/in/lin-nay-wun" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/Stefen9202" target="_blank"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </footer>
+    </main>
+    <script>
+        const wrapper = document.querySelector('.slider-wrapper');
+        const images = document.querySelectorAll('.slider-wrapper img');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let index = 0;
+        let autoSlideTimer;
+
+        function showSlide(n) {
+            if (n >= images.length) {
+                index = 0;
+            } else if (n < 0) {
+                index = images.length - 1;
+            } else {
+                index = n;
+            }
+            wrapper.style.transform = `translateX(${-index * 100}%)`;
+        }
+
+        function resetTimer() {
+            clearInterval(autoSlideTimer);
+            autoSlideTimer = setInterval(() => {
+                showSlide(index + 1);
+            }, 4000);
+        }
+
+        nextBtn.addEventListener('click', () => {
+            showSlide(index + 1);
+            resetTimer(); 
+        });
+
+        prevBtn.addEventListener('click', () => {
+            showSlide(index - 1);
+            resetTimer();
+        });
+
+        autoSlideTimer = setInterval(() => {
+            showSlide(index + 1);
+        }, 4000);
+    </script>
+</body>
 </html>

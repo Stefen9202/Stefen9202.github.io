@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lin Nay Wun | Portfolio</title>
+        <style>
+            html {
+                overflow-y: scroll;
+            }
+            
+            body {
+                margin: 0;
+                background-color: #ffffff;
+                height: 100vh;
+            }
+
+            header {
+                background: linear-gradient(rgba(255,255,255,0.0), rgba(255,255,255,0.0)), url('images/NavbarImage.jpg');
+                background-size: cover;
+                background-position: center;
+                padding: 20px 0;
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            
+            main {
+                padding-top: 80px; 
+            }
+
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 50px;
+            }
+
+            .name {
+                font-family: sans-serif;
+                font-weight: bold;
+                font-size: 1.8rem;
+                color: #000;
+                line-height: 1.2;
+            }
+
+            .tagline {
+                display: block;
+                font-family: sans-serif;
+                font-size: 0.85rem;
+                font-weight: 400;
+                color: #666;
+                margin-top: 2px;
+                letter-spacing: 0.5px;
+            }
+
+            nav ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+
+            nav li {
+                margin-left: 20px;
+                margin-right: 50px;
+                font-family: sans-serif;
+                color: #333;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            nav li:hover {
+                color: #000;
+            }
+
+            .projects-header {
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            .page-title {
+                font-family: sans-serif;
+                font-size: 3rem;
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .projects-container {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .project-list {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .project-item {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 80px 0;
+                width: 100%;
+            }
+
+            .project-item-inner {
+                display: flex;
+                align-items: center;
+                gap: 50px;
+                max-width: 1100px;
+                width: 100%;
+                padding: 0 20px;
+            }
+
+            .project-item:nth-child(even) {
+                background-color: #ffffff;
+            }
+
+            .project-item:nth-child(odd) {
+                background-color: #D4D4D4;
+            }
+
+            .project-item:nth-child(even) .project-item-inner {
+                flex-direction: row-reverse;
+            }
+
+            .project-left {
+                flex: 1.2;
+                height: 400px;
+                background-color: #f4f4f4;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .project-right {
+                flex: 1;
+                font-family: sans-serif;
+            }
+
+            .project-right h3 {
+                font-size: 2.2rem;
+                margin-bottom: 20px;
+                color: #000;
+            }
+
+            .project-right p {
+                font-size: 0.9rem;
+                line-height: 1.7;
+                color: #444;
+            }
+
+            .tech-stack {
+                margin-top: 15px;
+            }
+
+            .slider-container {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            .slider-wrapper {
+                display: flex;
+                transition: transform 0.5s ease-in-out;
+                height: 100%;
+            }
+
+            .slider-wrapper img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                background-color: #ffffff;
+                flex-shrink: 0;
+            }
+
+            .prev-btn, .next-btn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(0, 0, 0, 0.3);
+                color: white;
+                border: none;
+                padding: 15px;
+                cursor: pointer;
+                z-index: 10;
+            }
+
+            .prev-btn { 
+                left: 10px; 
+            }
+
+            .next-btn { 
+                right: 10px; 
+            }
+
+            footer {
+                padding: 30px 50px;
+                background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.0)), url('images/FooterImage.png'); 
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                border-top: 1px solid #eee;
+                text-align: center;
+                font-family: sans-serif;
+                color: #000;
+                font-size: 0.85rem;
+            }
+
+            /* Style for the icon container */
+            .footer-icons {
+                margin-top: 15px;
+                display: flex;
+                justify-content: center;
+                gap: 20px; /* Space between icons */
+            }
+
+            /* Style for the icons themselves */
+            .footer-icons a {
+                color: #000;
+                font-size: 1.5rem; /* Makes icons a good visible size */
+                text-decoration: none;
+                transition: transform 0.3s ease, color 0.3s ease;
+            }
+
+            /* Hover effect */
+            .footer-icons a:hover {
+                color: #666;
+                transform: translateY(-3px);
+            }
+
+            .figma-btn {
+                display: inline-block;
+                margin-top: 25px;
+                padding: 10px 20px;
+                border: 2px solid #000;
+                color: #000;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 0.9rem;
+                border-radius: 5px;
+                transition: all 0.3s ease;
+            }
+
+            .figma-btn:hover {
+                background-color: #000;
+                color: #fff;
+            }
+
+            .button-center-wrapper {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+
+        </style>    
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="logo">
+                    <div class="name"><a href="index.html" style="text-decoration: none; color: inherit;">Lin Nay Wun</a></div>
+                    <span class="tagline">Aspiring Tech Professional</span>
+                </div>
+                <ul>
+                    <li><a href="projects.html" style="text-decoration: none; color: inherit;">Projects</a></li>
+                    <li><a href="about_me.html" style="text-decoration: none; color: inherit;">About Me</a></li>
+                    <li><a href="contact.html" style="text-decoration: none; color: inherit;">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="projects-header">
+                <h1 class="page-title">My Works</h1>
+            </section>
+
+            <div class="projects-container">
+                <ul class="project-list">
+                    
+                    <li class="project-item">
+                        <div class="project-item-inner">
+                            <div class="project-left">
+                                <div class="slider-container">
+                                    <div class="slider-wrapper">
+                                        <img src="images/CV_Lulus_Picture2.png" alt="Slide 2">
+                                        <img src="images/CV_Lulus_Picture3.png" alt="Slide 3">
+                                        <img src="images/CV_Lulus_Picture4.png" alt="Slide 4">
+                                        <img src="images/CV_Lulus_Picture1.png" alt="Slide 1">
+                                    </div>
+                                    <button class="prev-btn">&#10094;</button>
+                                    <button class="next-btn">&#10095;</button>
+                                </div>
+                            </div>
+                            <div class="project-right">
+                                <h3>CV Lulus Website</h3>
+                                <p>During my internship at PT PCBA Semicondutor International, I contributed as a Full-Stack Developer to the creation of CV Lulus, a professional resume-building platform. Working in a collaborative team environment with supervisors and colleagues, I bridged the gap between design and functionality. I led the UI/UX design and front-end development of over 10 core pages—including the Dashboard, Template Selection, and Authentication flows—using React and Next.js. Additionally, I assisted in integrating these interfaces with back-end logic to ensure a high-performance, responsive application that handles user data seamlessly.</p>
+                                <div class="tech-stack">
+                                    <div>
+                                        <b>
+                                            <span>HTML /</span>
+                                            <span>CSS /</span>
+                                            <span>JavaScript /</span>
+                                            <span>React /</span>
+                                            <span>Next.js</span>
+                                        </b>
+                                    </div>
+                                    <div class="button-center-wrapper">
+                                        <a href="https://www.figma.com/design/tTJCBK6f4UgKs6mjRKvScd/CV-Lulus?node-id=0-1&t=dYlf9COiGqzdDxK8-1" class="figma-btn" target="_blank">View Figma Project</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="project-item">
+                        <div class="project-item-inner">
+                            <div class="project-left">
+                                <div class="slider-container">
+                                    <div class="slider-wrapper">
+                                        <img src="images/Pioneer_Golf_Club_Picture3.png" alt="Slide 3">
+                                        <img src="images/Pioneer_Golf_Club_Picture4.png" alt="Slide 4">
+                                        <img src="images/Pioneer_Golf_Club_Picture5.png" alt="Slide 5">
+                                        <img src="images/Pioneer_Golf_Club_Picture6.png" alt="Slide 6">
+                                        <img src="images/Pioneer_Golf_Club_Picture7.png" alt="Slide 7">
+                                        <img src="images/Pioneer_Golf_Club_Picture8.png" alt="Slide 8">
+                                        <img src="images/Pioneer_Golf_Club_Picture10.png" alt="Slide 10">
+                                        <img src="images/Pioneer_Golf_Club_Picture11.png" alt="Slide 11">
+                                        <img src="images/Pioneer_Golf_Club_Picture1.png" alt="Slide 1">
+                                        <img src="images/Pioneer_Golf_Club_Picture2.png" alt="Slide 2">
+                                        <img src="images/Pioneer_Golf_Club_Picture9.png" alt="Slide 9">
+                                    </div>
+                                    <button class="prev-btn">&#10094;</button>
+                                    <button class="next-btn">&#10095;</button>
+                                </div>
+                            </div>
+                            <div class="project-right">
+                                <h3>Pioneer Golf Club</h3>
+                                <p>Developed during my final year of Mobile Development, this group project was built for the Cimso Hackathon. I led the end-to-end development process, from conceptualizing and designing the entire user interface to implementing the core logic. Using Flutter, I engineered a fully responsive application that ensures a seamless experience across various mobile devices.</p>
+                                <div class="tech-stack">
+                                    <b>
+                                        <span>Dart / Flutter / Andriod Studio</span>
+                                    </b>
+                                </div>
+                                <div class="button-center-wrapper">
+                                    <a href="https://www.figma.com/design/uJ3ZqapmAHPSdv7kcy2cY7/ICT425_Cimso_Hackathon_2025?node-id=0-1&t=JyCjMNyX9HyXvn7R-1" class="figma-btn" target="_blank">View Figma Project</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="project-item">
+                        <div class="project-item-inner">
+                            <div class="project-left">
+                                <div class="slider-container">
+                                    <div class="slider-wrapper">
+                                        <img src="images/Dormmate_Picture1.png" alt="Slide 1">
+                                        <img src="images/Dormmate_Picture2.png" alt="Slide 2">
+                                        <img src="images/Dormmate_Picture3.png" alt="Slide 3">
+                                        <img src="images/Dormmate_Picture4.png" alt="Slide 4">
+                                        <img src="images/Dormmate_Picture5.png" alt="Slide 5">
+                                        <img src="images/Dormmate_Picture6.png" alt="Slide 6">
+                                        <img src="images/Dormmate_Picture7.png" alt="Slide 7">
+                                        <img src="images/Dormmate_Picture8.png" alt="Slide 8">
+                                    </div>
+                                    <button class="prev-btn">&#10094;</button>
+                                    <button class="next-btn">&#10095;</button>
+                                </div>
+                            </div>
+                            <div class="project-right">
+                                <h3>Dormmate</h3>
+                                <p>Student Housing Marketplace Developed as a group project for System Analysis & Design, Dormmate is a localized home-rental platform specifically tailored for international students moving to Thailand. I played a key role in the initial design phase, translating user requirements into comprehensive wireframes and interactive prototypes. My focus was on creating a logical user flow that simplifies the search for student-friendly accommodation in a new country.</p>
+                                <div class="tech-stack">
+                                    <b>
+                                        <span>Draw.io / Figma / Canva</span>
+                                    </b>
+                                </div>
+                                <div class="button-center-wrapper">
+                                    <a href="https://www.canva.com/design/DAGC8P1qgQs/DibDPRXg610b9lNuYdcxYw/edit?utm_content=DAGC8P1qgQs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="figma-btn" target="_blank">View Canva Project</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="project-item">
+                        <div class="project-item-inner">
+                            <div class="project-left">
+                                <div class="slider-container">
+                                    <div class="slider-wrapper">
+                                        <img src="images/LostChild_Picture7.png" alt="Slide 7">
+                                        <img src="images/LostChild_Picture8.png" alt="Slide 8">
+                                        <img src="images/LostChild_Picture9.png" alt="Slide 9">
+                                        <img src="images/LostChild_Picture1.png" alt="Slide 1">
+                                        <img src="images/LostChild_Picture2.png" alt="Slide 2">
+                                        <img src="images/LostChild_Picture3.png" alt="Slide 3">
+                                        <img src="images/LostChild_Picture4.png" alt="Slide 4">
+                                        <img src="images/LostChild_Picture5.png" alt="Slide 5">
+                                        <img src="images/LostChild_Picture6.png" alt="Slide 6">
+                                    </div>
+                                    <button class="prev-btn">&#10094;</button>
+                                    <button class="next-btn">&#10095;</button>
+                                </div>
+                            </div>
+                            <div class="project-right">
+                                <h3>Lost Child</h3>
+                                <p>Developed using Unity and C#, this 3D adventure was a core university project. I led development from concept to completion, focusing on narrative and gameplay as the protagonist searches for their lost father. My contributions included engineering player mechanics, architecting levels, and implementing a progressive difficulty system. I ensured every challenge served the story while maintaining a polished player experience.</p>
+                                <div class="tech-stack">
+                                    <b>
+                                        <span>C# / Unity Engine</span>
+                                    </b>
+                                </div>
+                                <div class="button-center-wrapper">
+                                    <a href="https://drive.google.com/file/d/1E6yV_rSfuTknFDTNA_wgY-K6svQt3cbs/view?usp=sharing" class="figma-btn" target="_blank">View Project Video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="project-item">
+                        <div class="project-item-inner">
+                            <div class="project-left">
+                                <div class="slider-container">
+                                    <div class="slider-wrapper">
+                                        <img src="images/LanternoftheLost_Picture1.png" alt="Slide 1">
+                                        <img src="images/LanternoftheLost_Picture2.png" alt="Slide 2">
+                                        <img src="images/LanternoftheLost_Picture3.png" alt="Slide 3">
+                                        <img src="images/LanternoftheLost_Picture4.png" alt="Slide 4">
+                                        <img src="images/LanternoftheLost_Picture5.png" alt="Slide 5">
+                                    </div>
+                                    <button class="prev-btn">&#10094;</button>
+                                    <button class="next-btn">&#10095;</button>
+                                </div>
+                            </div>
+                            <div class="project-right">
+                                <h3>Lantern of the Lost</h3>
+                                <p>Developed in Unity using C#, this 2D puzzle-platformer challenges players to find keys and reach the exit. As a key contributor to this university group project, I designed and implemented a full level, focusing on 2D mechanics and logic-based puzzles. I collaborated with my team to ensure my level design integrated seamlessly with the game's overall difficulty and atmospheric flow.</p>
+                                <div class="tech-stack">
+                                    <b>
+                                        <span>C# / Unity Engine</span>
+                                    </b>
+                                </div>
+                                <div class="button-center-wrapper">
+                                    <a href="https://youtu.be/Lt08RKvNfk4?si=EMmeqMjxNPRwpejD&t=349" class="figma-btn" target="_blank">View Project Video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="project-item">
+                        <div class="project-item-inner">
+                            <div class="project-left">
+                                <div class="slider-container">
+                                    <div class="slider-wrapper">
+                                        <img src="images/MentalHealthDetector_Picture1.png" alt="Slide 1">
+                                        <img src="images/MentalHealthDetector_Picture2.png" alt="Slide 2">
+                                        <img src="images/MentalHealthDetector_Picture3.png" alt="Slide 3">
+                                    </div>
+                                    <button class="prev-btn">&#10094;</button>
+                                    <button class="next-btn">&#10095;</button>
+                                </div>
+                            </div>
+                            <div class="project-right">
+                                <h3>Mental Health Detector</h3>
+                                <p>Developed as a group project, this application uses OpenCV for Unity to perform real-time facial emotion recognition. By capturing a user's face via camera, the system detects emotional states such as happiness, sadness, or anger. I contributed to the project background and core concept while assisting in the technical development using C#. This project demonstrates my ability to integrate computer vision libraries into the Unity environment to create interactive, AI-driven tools.</p>
+                                <div class="tech-stack">
+                                    <b>
+                                        <span>C# / Unity Engine / OpenCV for Unity</span>
+                                    </b>
+                                </div>
+                                <div class="button-center-wrapper">
+                                    <a href="https://youtu.be/U1hVIVQWmOY?si=J1C9CJYc0wVuDpml" class="figma-btn" target="_blank">View Project Video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="project-item">
+                        <div class="project-item-inner">
+                            <div class="project-left">
+                                <div class="slider-container">
+                                    <div class="slider-wrapper">
+                                        <img src="images/ARFoodMenu_Picture1.png" alt="Slide 1">
+                                        <img src="images/ARFoodMenu_Picture2.png" alt="Slide 2">
+                                        <img src="images/ARFoodMenu_Picture3.png" alt="Slide 3">
+                                        <img src="images/ARFoodMenu_Picture4.png" alt="Slide 4">
+                                    </div>
+                                    <button class="prev-btn">&#10094;</button>
+                                    <button class="next-btn">&#10095;</button>
+                                </div>
+                            </div>
+                            <div class="project-right">
+                                <h3>AR Food Menu</h3>
+                                <p>This augmented reality application uses the Unity Engine to transform traditional dining experiences. By scanning a QR code with the device camera, users trigger an interactive digital menu. I assisted in the development and helped define the project's key highlights, focusing on the AR interaction where clicking menu buttons renders realistic 3D food models in the real-world environment. This project demonstrates my ability to implement camera-based tracking and interactive AR UI using C#.</p>
+                                <div class="tech-stack">
+                                    <b>
+                                        <span>C# / Unity Engine / OpenCV for Unity</span>
+                                    </b>
+                                </div>
+                                <div class="button-center-wrapper">
+                                    <a href="https://youtu.be/vKkTMQPx5HQ?si=el4dzhR9KQFNwJQm" class="figma-btn" target="_blank">View Project Video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="project-item">
+                        <div class="project-item-inner">
+                            <div class="project-left">
+                                <div class="slider-container">
+                                    <div class="slider-wrapper">
+                                        <img src="images/SchoolScenery_Picture1.png" alt="Slide 1">
+                                        <img src="images/SchoolScenery_Picture2.png" alt="Slide 2">
+                                        <img src="images/SchoolScenery_Picture3.png" alt="Slide 3">
+                                        <img src="images/SchoolScenery_Picture4.png" alt="Slide 4">
+                                        <img src="images/SchoolScenery_Picture5.png" alt="Slide 5">
+                                    </div>
+                                    <button class="prev-btn">&#10094;</button>
+                                    <button class="next-btn">&#10095;</button>
+                                </div>
+                            </div>
+                            <div class="project-right">
+                                <h3>School Scenery</h3>
+                                <p>Produced for a Digital Media Literacy course, this project focuses on capturing and showcasing the unique atmosphere of my university campus. Working in a creative group, I served as the primary videographer and editor, utilizing iMovie to craft a professional and engaging video. I focused on visual storytelling through careful shot selection and rhythmic editing to highlight the school's scenery. This project allowed me to develop my skills in media production, timing, and creative communication.</p>
+                                <div class="tech-stack">
+                                    <b>
+                                        <span>IMovies / TikTok</span>
+                                    </b>
+                                </div>
+                                <div class="button-center-wrapper">
+                                    <a href="https://www.tiktok.com/@linnaywun/video/7257209519711866113?is_from_webapp=1&sender_device=pc" class="figma-btn" target="_blank">View Project Video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+            <footer>
+                <p>&copy; 2026 Lin Nay Wun. Built with passion & modern tech.</p>
+                
+                <div class="footer-icons">
+                    <a href="https://www.linkedin.com/in/lin-nay-wun" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/Stefen9202" target="_blank"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </footer>
+
+        </main>
+
+        <script>
+            document.querySelectorAll('.project-item').forEach((project) => {
+                const wrapper = project.querySelector('.slider-wrapper');
+                const images = project.querySelectorAll('.slider-wrapper img');
+                const prevBtn = project.querySelector('.prev-btn');
+                const nextBtn = project.querySelector('.next-btn');
+
+                let index = 0;
+                let autoSlideTimer;
+
+                function showSlide(n) {
+                    if (n >= images.length) index = 0;
+                    else if (n < 0) index = images.length - 1;
+                    else index = n;
+                    wrapper.style.transform = `translateX(${-index * 100}%)`;
+                }
+
+                nextBtn.addEventListener('click', () => {
+                    showSlide(index + 1);
+                    resetTimer();
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    showSlide(index - 1);
+                    resetTimer();
+                });
+
+                function resetTimer() {
+                    clearInterval(autoSlideTimer);
+                    autoSlideTimer = setInterval(() => showSlide(index + 1), 4000);
+                }
+
+                autoSlideTimer = setInterval(() => showSlide(index + 1), 4000);
+            });
+        </script>
+    </body>
+</html>

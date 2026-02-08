@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lin Nay Wun | Portfolio</title>
+        <style>
+            html {
+                overflow-y: scroll;
+            }
+            
+            body {
+                margin: 0;
+                background-color: #ffffff;
+                /* Sticky Footer Logic: Body becomes a column flex container */
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            header {
+                /*background: linear-gradient(rgba(255,255,255,0.0), rgba(255,255,255,0.0)), url('images/NavbarImage.jpg');*/
+                background-size: cover;
+                background-position: center;
+                padding: 20px 0;
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                /*box-shadow: 0 2px 10px rgba(0,0,0,0.1);*/
+            }
+
+            main {
+                /* flex: 1 makes main expand to fill all empty space */
+                flex: 1; 
+                padding-top: 80px; 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 40px; 
+
+                /* --- BACKGROUND IMAGE ADDED HERE --- */
+                /* Replace 'images/background.jpg' with your actual image path */
+                background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url('images/ContactMe_Background_Picture2.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed; /* Optional: keeps image still while scrolling */
+            }
+
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 50px;
+            }
+
+            .name {
+                font-family: sans-serif;
+                font-weight: bold;
+                font-size: 1.8rem;
+                color: #ffffff;
+                line-height: 1.2;
+            }
+
+            .tagline {
+                display: block;
+                font-family: sans-serif;
+                font-size: 0.85rem;
+                font-weight: 400;
+                color: #666;
+                margin-top: 2px;
+                margin-left: 0px;
+                letter-spacing: 0.5px;
+            }
+
+            nav ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+
+            nav li {
+                margin-left: 20px;
+                margin-right: 50px;
+                font-family: sans-serif;
+                color: #ffffff;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            nav li:hover {
+                color: #888888;
+            }
+
+            /* --- CONTACT BOX STYLES --- */
+            .contact-container {
+                background-color: rgba(245, 245, 245, 0.5); /* Added transparency so background peaks through */
+                padding: 60px;
+                border-radius: 12px;
+                max-width: 600px;
+                width: 90%;
+                text-align: center;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+                backdrop-filter: blur(5px); /* Optional: blurs the background behind the box */
+            }
+
+            .contact-container h2 {
+                font-family: sans-serif;
+                font-size: 2.2rem;
+                margin-bottom: 20px;
+                color: #000;
+            }
+
+            .contact-container p {
+                font-family: sans-serif;
+                color: #333;
+                line-height: 1.6;
+                margin-bottom: 30px;
+            }
+
+            .contact-info {
+                list-style: none;
+                padding: 0;
+                font-family: sans-serif;
+            }
+
+            .contact-info li {
+                margin: 15px 0;
+                font-size: 1.1rem;
+            }
+
+            .contact-info a {
+                color: #000;
+                text-decoration: none;
+                font-weight: bold;
+                border-bottom: 2px solid transparent;
+                transition: 0.3s;
+            }
+
+            .contact-info a:hover {
+                border-bottom: 2px solid #000;
+            }
+
+        </style>    
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="logo">
+                    <div class="name"><a href="index.html" style="text-decoration: none; color: inherit;">Lin Nay Wun</a></div>
+                    <span class="tagline">Aspiring Tech Professional</span>
+                </div>
+                <ul>
+                    <li><a href="projects.html" style="text-decoration: none; color: inherit;">Projects</a></li>
+                    <li><a href="about_me.html" style="text-decoration: none; color: inherit;">About Me</a></li>
+                    <li><a href="contact.html" style="text-decoration: none; color: inherit;">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section class="contact-container">
+                <h2>Let’s Build Something Together</h2>
+                <p>
+                    I am currently looking for new opportunities and collaborations in Thailand's vibrant tech ecosystem. 
+                    Whether you have a question or just want to connect, feel free to reach out!
+                </p>
+                
+                <ul class="contact-info">
+                    <li>📧 Email: <b>linnaywun92@gmail.com</b></li>
+                    <li>🔗 LinkedIn: <a href="https://www.linkedin.com/in/lin-nay-wun" target="_blank">www.linkedin.com/in/lin-nay-wun</a></li>
+                    <li>💻 GitHub: <a href="https://github.com/Stefen9202" target="_blank">github.com/Stefen9202</a></li>
+                </ul>
+            </section>
+        </main>
+    </body>
+</html>

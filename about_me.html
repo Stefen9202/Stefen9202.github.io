@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lin Nay Wun | Portfolio</title>
+        <style>
+            html {
+                overflow-y: scroll;
+            }
+            
+            body {
+                margin: 0;
+                background-color: #ffffff;
+                font-family: sans-serif;
+            }
+
+            header {
+                background: linear-gradient(rgba(255,255,255,0.0), rgba(255,255,255,0.0)), url('images/NavbarImage.jpg');
+                background-size: cover;
+                background-position: center;
+                padding: 20px 0;
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            main {
+                padding-top: 80px; 
+            }
+
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 50px;
+            }
+
+            .name {
+                font-weight: bold;
+                font-size: 1.8rem;
+                color: #000;
+                line-height: 1.2;
+            }
+
+            .tagline {
+                display: block;
+                font-size: 0.85rem;
+                font-weight: 400;
+                color: #666;
+                margin-top: 2px;
+                letter-spacing: 0.5px;
+            }
+
+            nav ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+
+            nav li {
+                margin-left: 20px;
+                margin-right: 50px;
+                color: #333;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            nav li:hover {
+                color: #000;
+            }
+
+            h2 {
+                font-size: 2rem;
+                color: #000;
+            }
+
+            .about-container {
+                display: flex;
+                align-items: center;
+                gap: 40px;
+                max-width: 900px;
+                margin: 50px auto;
+                padding: 0 20px;
+            }
+
+            .profile-pic {
+                width: 370px;
+                height: 370px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            .bio-text {
+                flex: 1;
+                line-height: 1.4;
+            }
+
+            .resume-btn-container {
+                display: flex;
+                justify-content: center;
+                margin-top: 30px;
+            }
+
+            .resume-button {
+                display: inline-block;
+                padding: 12px 28px;
+                background-color: #fff;
+                color: #000;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 0.95rem;
+                transition: all 0.3s ease;
+                border: 2px solid #000;
+            }
+
+            .resume-button:hover {
+                background-color: #000;
+                color: #fff;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+            /* ------------------------------- */
+
+            .skills-section {
+                background-color: #f5f5f5;
+                padding: 80px 0;
+                width: 100%;
+            }
+
+            .skills-container {
+                max-width: 1150px; 
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            .skills-container h2 {
+                margin-bottom: 40px;
+                text-align: center;
+            }
+
+            .skills-flex-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .skill-card {
+                background: #ffffff;
+                padding: 25px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                transition: transform 0.3s ease;
+                width: 250px;
+                text-align: center;
+                min-height: 280px;
+            }
+
+            .skill-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .skill-card h3 {
+                font-size: 1.1rem;
+                margin-top: 0;
+                color: #000;
+                border-bottom: 2px solid #f5f5f5;
+                padding-bottom: 10px;
+                margin-bottom: 15px;
+            }
+
+            .skill-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                color: #444;
+                font-size: 0.95rem;
+                line-height: 1.8;
+            }
+
+            .experience-section {
+                padding: 80px 0;
+                background-color: #ffffff;
+                width: 100%;
+            }
+
+            .experience-section h2 {
+                text-align: center;
+                margin-bottom: 60px;
+            }
+
+            .timeline-container {
+                max-width: 1000px; 
+                margin: 0 auto;
+                position: relative;
+                padding-left: 40px;
+            }
+
+            .timeline-container::before {
+                content: '';
+                position: absolute;
+                left: 10px;
+                top: 5px;
+                bottom: 80px; 
+                width: 2px;
+                background-color: #000;
+            }
+
+            .experience-item {
+                position: relative;
+                margin-bottom: 60px;
+            }
+
+            .experience-item::before {
+                content: '';
+                position: absolute;
+                left: -36px;
+                top: 5px;
+                width: 12px;
+                height: 12px;
+                background-color: #000;
+                border-radius: 50%;
+                z-index: 1;
+            }
+
+            .exp-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                margin-bottom: 5px;
+            }
+
+            .exp-title {
+                font-size: 1.4rem;
+                font-weight: bold;
+                color: #000;
+            }
+
+            .exp-date {
+                font-size: 1rem;
+                color: #555;
+                white-space: nowrap; 
+            }
+
+            .exp-company {
+                font-size: 1.1rem;
+                color: #000;
+                margin-bottom: 15px;
+                display: block;
+            }
+
+            .exp-details {
+                list-style-type: disc;
+                padding-left: 20px;
+                color: #444;
+                line-height: 1.6;
+            }
+
+            .exp-details li {
+                margin-bottom: 10px;
+            }
+
+            .education-section {
+                padding: 80px 0;
+                background-color: #f5f5f5;
+                width: 100%;
+            }
+
+            .education-section h2 {
+                text-align: center;
+                margin-bottom: 60px;
+            }
+
+            .edu-timeline-container {
+                max-width: 1000px; 
+                margin: 0 auto;
+                position: relative;
+                padding-left: 40px;
+            }
+
+            .edu-timeline-container::before {
+                content: '';
+                position: absolute;
+                left: 10px;
+                top: 5px;
+                bottom: 80px; 
+                width: 2px;
+                background-color: #000;
+            }
+
+            .education-item {
+                position: relative;
+                margin-bottom: 60px;
+            }
+
+            .education-item::before {
+                content: '';
+                position: absolute;
+                left: -36px;
+                top: 5px;
+                width: 12px;
+                height: 12px;
+                background-color: #000;
+                border-radius: 50%;
+                z-index: 1;
+            }
+
+            .edu-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                margin-bottom: 5px;
+            }
+
+            .edu-title {
+                font-size: 1.4rem;
+                font-weight: bold;
+                color: #000;
+            }
+
+            .edu-date {
+                font-size: 1rem;
+                color: #555;
+                white-space: nowrap; 
+            }
+
+            .edu-info {
+                font-size: 1.1rem;
+                color: #000;
+                display: block;
+                line-height: 1.6;
+            }
+
+            .hobbies-section {
+                padding: 80px 0;
+                background-color: #ffffff;
+                width: 100%;
+            }
+
+            .hobbies-container {
+                display: flex;
+                align-items: center;
+                gap: 50px;
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            .hobbies-text {
+                flex: 1;
+            }
+
+            .hobby-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                list-style: none;
+                padding: 0;
+                margin-top: 20px;
+            }
+
+            .hobby-tag {
+                background: #f0f0f0;
+                padding: 8px 15px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                color: #333;
+                border: 1px solid #ddd;
+                transition: 0.3s;
+                cursor: default;
+            }
+
+            .hobby-tag:hover {
+                background-color: #000;
+                color: #fff;
+            }
+
+            .slider-wrapper {
+                flex: 1;
+                width: 100%;
+                max-width: 500px;
+                height: 450px;
+                overflow: hidden;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                position: relative;
+            }
+
+            .slider {
+                display: flex;
+                height: 100%;
+                transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .slider img {
+                width: 100%; 
+                min-width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .slider-btn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: rgba(255, 255, 255, 0.8);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: 0.3s;
+                z-index: 10;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            }
+
+            .slider-btn:hover {
+                background-color: #000;
+                color: #fff;
+            }
+
+            .prev-btn { left: 15px; }
+            .next-btn { right: 15px; }
+
+            @media (max-width: 850px) {
+                .hobbies-container {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                .hobby-list {
+                    justify-content: center;
+                }
+                .slider-wrapper {
+                    max-width: 100%;
+                    height: 300px;
+                }
+            }
+
+            footer {
+                padding: 30px 50px;
+                background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.0)), url('images/FooterImage.png'); 
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                border-top: 1px solid #eee;
+                text-align: center;
+                font-family: sans-serif;
+                color: #000;
+                font-size: 0.85rem;
+            }
+
+            /* Style for the icon container */
+            .footer-icons {
+                margin-top: 15px;
+                display: flex;
+                justify-content: center;
+                gap: 20px; /* Space between icons */
+            }
+
+            /* Style for the icons themselves */
+            .footer-icons a {
+                color: #000;
+                font-size: 1.5rem; /* Makes icons a good visible size */
+                text-decoration: none;
+                transition: transform 0.3s ease, color 0.3s ease;
+            }
+
+            /* Hover effect */
+            .footer-icons a:hover {
+                color: #666;
+                transform: translateY(-3px);
+            }
+            
+        </style> 
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="logo">
+                    <div class="name"><a href="index.html" style="text-decoration: none; color: inherit;">Lin Nay Wun</a></div>
+                    <span class="tagline">Aspiring Tech Professional</span>
+                </div>
+                <ul>
+                    <li><a href="projects.html" style="text-decoration: none; color: inherit;">Projects</a></li>
+                    <li><a href="about_me.html" style="text-decoration: none; color: inherit;">About Me</a></li>
+                    <li><a href="contact.html" style="text-decoration: none; color: inherit;">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="about-container">
+                <img src="images/profile_picture4.png" alt="Lin Nay Wun" class="profile-pic">
+                <div class="bio-text">
+                    <h2>About Me</h2>
+                    <p>
+                        I am a fresh graduate from <strong>Rangsit University</strong>, where I earned my degree in <strong>Information and Communication Technology.</strong> I am deeply passionate about technology and eager to apply my skills in building functional, user-friendly web applications.<br><br>
+                        My journey in tech is driven by a passion for building seamless digital experiences from the initial wireframes to a fully deployed web application. I specialize in crafting clean code and intuitive interfaces that solve real-world problems. As a fresh graduate, I am eager to contribute my skills to innovative projects and continue growing within Thailand's vibrant tech ecosystem.
+                    </p>
+                    
+                    <div class="resume-btn-container">
+                        <a href="assets/Lin_Nay_Wun_Resume.pdf" target="_blank" download="Lin_Nay_Wun_Resume.pdf" class="resume-button">
+                            Download Resume
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="skills-section">
+                <div class="skills-container">
+                    <h2>Skills & Tools</h2>
+                    <div class="skills-flex-wrapper">
+                        <div class="skill-card">
+                            <h3>Programming / Scripting</h3>
+                            <ul class="skill-list">
+                                <li>Python (basic)</li>
+                                <li>Java (basic)</li>
+                                <li>JavaScript (basic)</li>
+                                <li>TypeScript (basic)</li>
+                                <li>HTML & CSS</li>
+                                <li>SQL (basic)</li>
+                                <li>C#</li>
+                                <li>Dart</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Web & App Development</h3>
+                            <ul class="skill-list">
+                                <li>React / Next.js (basic)</li>
+                                <li>Tailwind CSS / Bootstrap</li>
+                                <li>REST APIs</li>
+                                <li>Responsive Design</li>
+                                <li>UI/UX Design</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Tools & Platforms</h3>
+                            <ul class="skill-list">
+                                <li>Git & GitHub</li>
+                                <li>VS Code</li>
+                                <li>Postman</li>
+                                <li>Figma & Canva</li>
+                                <li>Vercel / Railway</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Networking & Systems</h3>
+                            <ul class="skill-list">
+                                <li>Basic networking</li>
+                                <li>IP / Subnetting / VLAN</li>
+                                <li>TCP/IP Fundamentals</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Database</h3>
+                            <ul class="skill-list">
+                                <li>MySQL</li>
+                                <li>Supabase (basic)</li>
+                                <li>Value (basic)</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Soft Skills</h3>
+                            <ul class="skill-list">
+                                <li>Problem-solving</li>
+                                <li>Teamwork</li>
+                                <li>Fast learner</li>
+                                <li>Communication</li>
+                                <li>Time Management</li>
+                                <li>Adaptability</li>
+                                <li>Creativity</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Languages</h3>
+                            <ul class="skill-list">
+                                <li>Burmese (native)</li>
+                                <li>English (professional)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="experience-section">
+                <h2>Work Experience</h2>
+                <div class="timeline-container">
+                    <div class="experience-item">
+                        <div class="exp-header">
+                            <span class="exp-title">IT Support & Web Developer (Intern)</span>
+                            <span class="exp-date">Aug 2025 - Nov 2025</span>
+                        </div>
+                        <span class="exp-company">PT PCBA Semiconductor International - Jakarta, Indonesia</span>
+                        <ul class="exp-details">
+                            <li>Transformed design concepts into reality by engineering core UI/UX components for the CV Lulus platform, utilizing Figma for prototyping and React/Next.js for implementation.</li>
+                            <li>Spearheaded front-end logic and managed complex user flows from design to deployment, ensuring cross-device responsiveness.</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="exp-header">
+                            <span class="exp-title">HR Assistant/Business Development Assistant (Intern)</span>
+                            <span class="exp-date">Feb 2022 - May 2022</span>
+                        </div>
+                        <span class="exp-company">Garranto Executive Search - Singapore</span>
+                        <ul class="exp-details">
+                            <li>Strategically sourced high-potential talent to meet specific client requirements.</li>
+                            <li>Streamlined the recruitment pipeline by managing candidate documentation and coordinating interview schedules.</li>
+                            <li>Demonstrated high-capacity evaluation by screening hundreds of professional profiles within a high-pressure monthly timeframe.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="education-section">
+                <h2>Education</h2>
+                <div class="edu-timeline-container">
+                    <div class="education-item">
+                        <div class="edu-header">
+                            <span class="edu-title">Bachelor of Science, Information & Communication Technology</span>
+                            <span class="edu-date">Jan 2023 - Dec 2025</span>
+                        </div>
+                        <div class="edu-info">
+                            Rangsit University | GPA: 3.52<br>
+                            (Fresh Graduate)
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="edu-header">
+                            <span class="edu-title">Higher National Diploma (HND) in Business Administration</span>
+                            <span class="edu-date">Jan 2019 - Dec 2020</span>
+                        </div>
+                        <div class="edu-info">
+                            Strategy First University
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hobbies-section">
+                <div class="hobbies-container">
+                    <div class="hobbies-text">
+                        <h2>Hobbies & Interests</h2>
+                        <p>When I'm not coding, I enjoy staying active and exploring creative outlets. These hobbies keep me inspired and help me maintain a balanced perspective on life and technology.</p>
+                        <ul class="hobby-list">
+                            <li class="hobby-tag">🏸 Badminton</li>
+                            <li class="hobby-tag">🎶 EDM & Raving</li>
+                            <li class="hobby-tag">🎧 DJing</li>
+                            <li class="hobby-tag">🎵 Listening to Music</li>
+                            <li class="hobby-tag">⚽ Football</li>
+                            <li class="hobby-tag">🃏 Cardistry</li>
+                            <li class="hobby-tag">🪄 Magic</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="slider-wrapper">
+                        <button class="slider-btn prev-btn" onclick="manualMove(-1)">&#10094;</button>
+                        <div class="slider" id="main-slider">
+                            <img src="images/Hobby_Picture1.jpg" alt="Hobby 1">
+                            <img src="images/Hobby_Picture2.jpg" alt="Hobby 2">
+                            <img src="images/Hobby_Picture3.jpg" alt="Hobby 3">
+                            <img src="images/Hobby_Picture4.jpg" alt="Hobby 4">
+                            <img src="images/Hobby_Picture5.jpg" alt="Hobby 5">
+                            <img src="images/Hobby_Picture6.jpg" alt="Hobby 6">
+                            <img src="images/Hobby_Picture7.png" alt="Hobby 7">
+                            <img src="images/Hobby_Picture8.png" alt="Hobby 8">
+                            <img src="images/Hobby_Picture9.png" alt="Hobby 9">
+                            <img src="images/Hobby_Picture10.png" alt="Hobby 10">
+                            <img src="images/Hobby_Picture11.png" alt="Hobby 11">
+                            <img src="images/Hobby_Picture12.png" alt="Hobby 12">
+                            <img src="images/Hobby_Picture13.png" alt="Hobby 13">
+                            <img src="images/Hobby_Picture14.png" alt="Hobby 14">
+                            <img src="images/Hobby_Picture15.png" alt="Hobby 15">
+                            <img src="images/Hobby_Picture16.png" alt="Hobby 16">
+                        </div>
+                        <button class="slider-btn next-btn" onclick="manualMove(1)">&#10095;</button>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <p>&copy; 2026 Lin Nay Wun. Built with passion & modern tech.</p>
+                
+                <div class="footer-icons">
+                    <a href="https://www.linkedin.com/in/lin-nay-wun" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/Stefen9202" target="_blank"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </footer>
+
+        </main>
+
+        <script>
+            let currentSlide = 0;
+            let slideInterval;
+
+            function updateSlider() {
+                const slider = document.getElementById('main-slider');
+                const images = slider.querySelectorAll('img');
+                const totalSlides = images.length;
+
+                if (currentSlide >= totalSlides) {
+                    currentSlide = 0;
+                } else if (currentSlide < 0) {
+                    currentSlide = totalSlides - 1;
+                }
+
+                const offset = -currentSlide * 100;
+                slider.style.transform = `translateX(${offset}%)`;
+            }
+
+            function startAutoSlide() {
+                slideInterval = setInterval(() => {
+                    currentSlide++;
+                    updateSlider();
+                }, 4000);
+            }
+
+            function manualMove(direction) {
+                clearInterval(slideInterval);
+                currentSlide += direction;
+                updateSlider();
+                startAutoSlide();
+            }
+
+            window.onload = startAutoSlide;
+        </script>
+    </body>
+</html>
