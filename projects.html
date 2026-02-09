@@ -214,23 +214,20 @@
                 font-size: 0.85rem;
             }
 
-            /* Style for the icon container */
             .footer-icons {
                 margin-top: 15px;
                 display: flex;
                 justify-content: center;
-                gap: 20px; /* Space between icons */
+                gap: 20px;
             }
 
-            /* Style for the icons themselves */
             .footer-icons a {
                 color: #000;
-                font-size: 1.5rem; /* Makes icons a good visible size */
+                font-size: 1.5rem;
                 text-decoration: none;
                 transition: transform 0.3s ease, color 0.3s ease;
             }
 
-            /* Hover effect */
             .footer-icons a:hover {
                 color: #666;
                 transform: translateY(-3px);
@@ -260,6 +257,43 @@
                 width: 100%;
             }
 
+            .menu-toggle {
+                display: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: #000;
+            }
+
+            @media (max-width: 992px) {
+                nav { padding: 0 20px; }
+                .project-item-inner { flex-direction: column !important; gap: 30px; }
+                .project-left { height: 300px; width: 100%; }
+                .project-right { text-align: center; }
+                .page-title { font-size: 2.2rem; }
+            }
+
+            @media (max-width: 768px) {
+                .menu-toggle { display: block; }
+                nav ul {
+                    display: none;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 80px;
+                    left: 0;
+                    width: 100%;
+                    background: #fff;
+                    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                    padding: 20px 0;
+                    text-align: center;
+                    z-index: 1001;
+                }
+                nav ul.active { display: flex; }
+                nav li { margin: 15px 0; margin-right: 0; margin-left: 0; }
+                
+                .project-item { padding: 40px 0; }
+                .project-right h3 { font-size: 1.8rem; }
+            }
+
         </style>    
     </head>
     <body>
@@ -269,7 +303,10 @@
                     <div class="name"><a href="index.html" style="text-decoration: none; color: inherit;">Lin Nay Wun</a></div>
                     <span class="tagline">Aspiring Tech Professional</span>
                 </div>
-                <ul>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <ul id="nav-list">
                     <li><a href="projects.html" style="text-decoration: none; color: inherit;">Projects</a></li>
                     <li><a href="about_me.html" style="text-decoration: none; color: inherit;">About Me</a></li>
                     <li><a href="contact.html" style="text-decoration: none; color: inherit;">Contact</a></li>
@@ -555,6 +592,13 @@
         </main>
 
         <script>
+            const menuToggle = document.getElementById('mobile-menu');
+            const navList = document.getElementById('nav-list');
+
+            menuToggle.addEventListener('click', () => {
+                navList.classList.toggle('active');
+            });
+
             document.querySelectorAll('.project-item').forEach((project) => {
                 const wrapper = project.querySelector('.slider-wrapper');
                 const images = project.querySelectorAll('.slider-wrapper img');

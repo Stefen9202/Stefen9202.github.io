@@ -13,14 +13,12 @@
             body {
                 margin: 0;
                 background-color: #ffffff;
-                /* Sticky Footer Logic: Body becomes a column flex container */
                 display: flex;
                 flex-direction: column;
                 min-height: 100vh;
             }
 
             header {
-                /*background: linear-gradient(rgba(255,255,255,0.0), rgba(255,255,255,0.0)), url('images/NavbarImage.jpg');*/
                 background-size: cover;
                 background-position: center;
                 padding: 20px 0;
@@ -29,25 +27,20 @@
                 top: 0;
                 left: 0;
                 z-index: 1000;
-                /*box-shadow: 0 2px 10px rgba(0,0,0,0.1);*/
             }
 
             main {
-                /* flex: 1 makes main expand to fill all empty space */
                 flex: 1; 
                 padding-top: 80px; 
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 padding-bottom: 40px; 
-
-                /* --- BACKGROUND IMAGE ADDED HERE --- */
-                /* Replace 'images/background.jpg' with your actual image path */
                 background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url('images/ContactMe_Background_Picture2.jpg');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
-                background-attachment: fixed; /* Optional: keeps image still while scrolling */
+                background-attachment: fixed;
             }
 
             nav {
@@ -96,16 +89,15 @@
                 color: #888888;
             }
 
-            /* --- CONTACT BOX STYLES --- */
             .contact-container {
-                background-color: rgba(245, 245, 245, 0.5); /* Added transparency so background peaks through */
+                background-color: rgba(245, 245, 245, 0.5);
                 padding: 60px;
                 border-radius: 12px;
                 max-width: 600px;
                 width: 90%;
                 text-align: center;
                 box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-                backdrop-filter: blur(5px); /* Optional: blurs the background behind the box */
+                backdrop-filter: blur(5px);
             }
 
             .contact-container h2 {
@@ -131,6 +123,7 @@
             .contact-info li {
                 margin: 15px 0;
                 font-size: 1.1rem;
+                word-wrap: break-word;
             }
 
             .contact-info a {
@@ -145,6 +138,54 @@
                 border-bottom: 2px solid #000;
             }
 
+            .menu-toggle {
+                display: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: #ffffff;
+            }
+
+            @media (max-width: 768px) {
+                nav {
+                    padding: 0 20px;
+                }
+
+                .menu-toggle {
+                    display: block;
+                }
+
+                nav ul {
+                    display: none;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 80px;
+                    left: 0;
+                    width: 100%;
+                    background: rgba(0, 0, 0, 0.9);
+                    padding: 20px 0;
+                    text-align: center;
+                    z-index: 1001;
+                }
+
+                nav ul.active {
+                    display: flex;
+                }
+
+                nav li {
+                    margin: 15px 0;
+                    margin-right: 0;
+                    margin-left: 0;
+                }
+
+                .contact-container {
+                    padding: 40px 20px;
+                }
+
+                .contact-container h2 {
+                    font-size: 1.8rem;
+                }
+            }
+
         </style>    
     </head>
     <body>
@@ -154,7 +195,10 @@
                     <div class="name"><a href="index.html" style="text-decoration: none; color: inherit;">Lin Nay Wun</a></div>
                     <span class="tagline">Aspiring Tech Professional</span>
                 </div>
-                <ul>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <ul id="nav-list">
                     <li><a href="projects.html" style="text-decoration: none; color: inherit;">Projects</a></li>
                     <li><a href="about_me.html" style="text-decoration: none; color: inherit;">About Me</a></li>
                     <li><a href="contact.html" style="text-decoration: none; color: inherit;">Contact</a></li>
@@ -177,5 +221,22 @@
                 </ul>
             </section>
         </main>
+
+        <script>
+            const menuToggle = document.getElementById('mobile-menu');
+            const navList = document.getElementById('nav-list');
+
+            menuToggle.addEventListener('click', () => {
+                navList.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (navList.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        </script>
     </body>
 </html>

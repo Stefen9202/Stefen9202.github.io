@@ -346,26 +346,70 @@
             font-size: 0.85rem;
         }
 
-        /* Style for the icon container */
         .footer-icons {
             margin-top: 15px;
             display: flex;
             justify-content: center;
-            gap: 20px; /* Space between icons */
+            gap: 20px;
         }
 
-        /* Style for the icons themselves */
         .footer-icons a {
             color: #000;
-            font-size: 1.5rem; /* Makes icons a good visible size */
+            font-size: 1.5rem;
             text-decoration: none;
             transition: transform 0.3s ease, color 0.3s ease;
         }
 
-        /* Hover effect */
         .footer-icons a:hover {
             color: #666;
             transform: translateY(-3px);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #000;
+        }
+
+        @media (max-width: 992px) {
+            nav { padding: 0 20px; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .project-item { flex-direction: column; margin-bottom: 80px; }
+            .project-right { padding-left: 0; margin-top: 30px; text-align: center; }
+            .project-left { height: 300px; width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 20px 0;
+                text-align: center;
+            }
+            nav ul.active { display: flex; }
+            nav li { margin: 15px 0; }
+
+            .hero-container {
+                flex-direction: column-reverse;
+                height: auto;
+                padding: 40px 20px;
+                text-align: center;
+            }
+            .hero-text { padding: 20px 0; }
+            .hero-text h1 { font-size: 2rem; }
+            .hero-image, .hero-image img { height: 300px; }
+            
+            .project-section, .skills-section, .contact-section { padding: 60px 20px; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .contact-container h2 { font-size: 1.8rem; }
         }
     </style>    
 </head>
@@ -373,10 +417,13 @@
     <header>
         <nav>
             <div class="logo">
-                    <div class="name"><a href="index.html" style="text-decoration: none; color: inherit;">Lin Nay Wun</a></div>
-                    <span class="tagline">Aspiring Tech Professional</span>
+                <div class="name"><a href="index.html" style="text-decoration: none; color: inherit;">Lin Nay Wun</a></div>
+                <span class="tagline">Aspiring Tech Professional</span>
             </div>
-            <ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fa fa-bars"></i>
+            </div>
+            <ul id="nav-list">
                 <li><a href="projects.html" style="text-decoration: none; color: inherit;">Projects</a></li>
                 <li><a href="about_me.html" style="text-decoration: none; color: inherit;">About Me</a></li>
                 <li><a href="contact.html" style="text-decoration: none; color: inherit;">Contact</a></li>
@@ -387,7 +434,7 @@
         <section class="hero-container">
             <div class="hero-text">
                 <h1>Hi, I'm Lin Nay Wun</h1>
-                <p>I am a fresh graduate from Rangsit University passionate about <br>Full-Stack Development and building high-performance web applications. My internship provided hands-on UI/UX experience using modern design insights to create intuitive interfaces. I also bring a versatile background in Data, Networking, IT Support, and QA, ensuring I can oversee the entire digital product lifecycle.</p>
+                <p>I am a fresh graduate from Rangsit University passionate about Full-Stack Development and building high-performance web applications. My internship provided hands-on UI/UX experience using modern design insights to create intuitive interfaces. I also bring a versatile background in Data, Networking, IT Support, and QA, ensuring I can oversee the entire digital product lifecycle.</p>
             </div>
             <div class="hero-image">
                 <img src="images/Profile_Picture.png" alt="Lin Nay Wun">
@@ -482,7 +529,15 @@
             </div>
         </footer>
     </main>
+
     <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
         const wrapper = document.querySelector('.slider-wrapper');
         const images = document.querySelectorAll('.slider-wrapper img');
         const prevBtn = document.querySelector('.prev-btn');

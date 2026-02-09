@@ -126,7 +126,6 @@
                 transform: translateY(-2px);
                 box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             }
-            /* ------------------------------- */
 
             .skills-section {
                 background-color: #f5f5f5;
@@ -290,7 +289,7 @@
                 position: absolute;
                 left: 10px;
                 top: 5px;
-                bottom: 80px; 
+                bottom: 30px; 
                 width: 2px;
                 background-color: #000;
             }
@@ -434,20 +433,6 @@
             .prev-btn { left: 15px; }
             .next-btn { right: 15px; }
 
-            @media (max-width: 850px) {
-                .hobbies-container {
-                    flex-direction: column;
-                    text-align: center;
-                }
-                .hobby-list {
-                    justify-content: center;
-                }
-                .slider-wrapper {
-                    max-width: 100%;
-                    height: 300px;
-                }
-            }
-
             footer {
                 padding: 30px 50px;
                 background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.0)), url('images/FooterImage.png'); 
@@ -461,26 +446,142 @@
                 font-size: 0.85rem;
             }
 
-            /* Style for the icon container */
             .footer-icons {
                 margin-top: 15px;
                 display: flex;
                 justify-content: center;
-                gap: 20px; /* Space between icons */
+                gap: 20px;
             }
 
-            /* Style for the icons themselves */
             .footer-icons a {
                 color: #000;
-                font-size: 1.5rem; /* Makes icons a good visible size */
+                font-size: 1.5rem;
                 text-decoration: none;
                 transition: transform 0.3s ease, color 0.3s ease;
             }
 
-            /* Hover effect */
             .footer-icons a:hover {
                 color: #666;
                 transform: translateY(-3px);
+            }
+
+            .certificates-section {
+                padding: 80px 0;
+                background-color: #f9f9f9;
+                width: 100%;
+            }
+
+            .certificates-section h2 {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .cert-container {
+                max-width: 550px; 
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                padding: 0 20px;
+            }
+
+            .cert-item {
+                width: 100%;
+                background: #fff;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                line-height: 0;
+                border: 1px solid #ddd;
+            }
+
+            .cert-item img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1 / 1.414; 
+                object-fit: cover;
+                display: block;
+            }
+
+            .cert-certificate img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                display: block;
+            }
+
+            .menu-toggle {
+                display: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: #000;
+            }
+
+            @media (max-width: 850px) {
+                nav {
+                    padding: 0 20px;
+                }
+                .menu-toggle {
+                    display: block;
+                }
+                nav ul {
+                    display: none;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 80px;
+                    left: 0;
+                    width: 100%;
+                    background: #fff;
+                    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                    padding: 20px 0;
+                    text-align: center;
+                    z-index: 1001;
+                }
+                nav ul.active {
+                    display: flex;
+                }
+                nav li {
+                    margin: 15px 0;
+                    margin-right: 0;
+                    margin-left: 0;
+                }
+                .about-container {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                .profile-pic {
+                    width: 250px;
+                    height: 250px;
+                }
+                .hobbies-container {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                .hobby-list {
+                    justify-content: center;
+                }
+                .slider-wrapper {
+                    max-width: 100%;
+                    height: 300px;
+                }
+                .exp-header, .edu-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .exp-date, .edu-date {
+                    margin-top: 5px;
+                }
+                .timeline-container::before, .edu-timeline-container::before {
+                    bottom: 40px;
+                }
+            }
+
+            @media (max-width: 600px) {
+                .cert-container {
+                    gap: 20px;
+                }
+                .page-title {
+                    font-size: 2rem;
+                }
             }
             
         </style> 
@@ -492,7 +593,10 @@
                     <div class="name"><a href="index.html" style="text-decoration: none; color: inherit;">Lin Nay Wun</a></div>
                     <span class="tagline">Aspiring Tech Professional</span>
                 </div>
-                <ul>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <ul id="nav-list">
                     <li><a href="projects.html" style="text-decoration: none; color: inherit;">Projects</a></li>
                     <li><a href="about_me.html" style="text-decoration: none; color: inherit;">About Me</a></li>
                     <li><a href="contact.html" style="text-decoration: none; color: inherit;">Contact</a></li>
@@ -689,6 +793,17 @@
                 </div>
             </section>
 
+            <section class="certificates-section">
+                <h2>Certificates & Academic Transcript</h2>
+                <div class="cert-container">
+                    <div class="cert-item"><img src="images/Certificate_Picture1.png" alt="Certificate 1"></div>
+                    <div class="cert-item"><img src="images/Certificate_Picture2.png" alt="Certificate 2"></div>
+                    <div class="cert-item"><img src="images/Certificate_Picture3.png" alt="Certificate 3"></div>
+                    <div class="cert-item"><img src="images/Certificate_Picture4.png" alt="Certificate 4"></div>
+                    <div class="cert-certificate"><img src="images/Certificate_Picture5.png" alt="Academic Transcript"></div>
+                </div>
+            </section>
+
             <footer>
                 <p>&copy; 2026 Lin Nay Wun. Built with passion & modern tech.</p>
                 
@@ -701,6 +816,13 @@
         </main>
 
         <script>
+            const menuToggle = document.getElementById('mobile-menu');
+            const navList = document.getElementById('nav-list');
+
+            menuToggle.addEventListener('click', () => {
+                navList.classList.toggle('active');
+            });
+
             let currentSlide = 0;
             let slideInterval;
 
